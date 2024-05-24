@@ -21,10 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.zeveats.Chef;
 import com.example.zeveats.ChefFoodPanel_BottomNavigation;
 import android.Manifest;
 import com.example.zeveats.R;
-import com.example.zeveats.UpdateDishModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

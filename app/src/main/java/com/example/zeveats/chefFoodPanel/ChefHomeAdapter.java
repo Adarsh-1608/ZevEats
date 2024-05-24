@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zeveats.R;
-import com.example.zeveats.UpdateDishModel;
 
 import java.util.List;
 

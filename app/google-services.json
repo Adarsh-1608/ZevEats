@@ -1,13 +1,14 @@
 {
   "project_info": {
-    "project_number": "717944314070",
-    "project_id": "zeveats-fe878",
-    "storage_bucket": "zeveats-fe878.appspot.com"
+    "project_number": "843810336049",
+    "firebase_url": "https://zevivac-default-rtdb.firebaseio.com",
+    "project_id": "zevivac",
+    "storage_bucket": "zevivac.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:717944314070:android:f826cf410d5ca3cc85d177",
+        "mobilesdk_app_id": "1:843810336049:android:4fff5f426cd24378645410",
         "android_client_info": {
           "package_name": "com.example.zeveats"
         }
@@ -15,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBRxkXOQwTKvS5E7d7u57MZOOGYlXnbeik"
+          "current_key": "AIzaSyB7ont0JAh4Sc3FtDq1tHMC_cqi20z8_8c"
         }
       ],
       "services": {

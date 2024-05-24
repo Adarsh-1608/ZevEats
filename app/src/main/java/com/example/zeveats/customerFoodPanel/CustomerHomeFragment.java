@@ -1,9 +1,6 @@
 package com.example.zeveats.customerFoodPanel;
 
-import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,15 +12,15 @@ import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.zeveats.MainMenu;
+import com.example.zeveats.Customer;
 import com.example.zeveats.R;
-import com.example.zeveats.UpdateDishModel;
+import com.example.zeveats.chefFoodPanel.UpdateDishModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,48 +36,52 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
     RecyclerView recyclerView;
     private List<UpdateDishModel> updateDishModelList;
     private CustomerHomeAdapter adapter;
-    private String State, City, Area;
-    DatabaseReference dataa, databaseReference;
+    String State, City, LocalArea;
+    DatabaseReference dataaa, databaseReference;
     SwipeRefreshLayout swipeRefreshLayout;
+    SearchView searchView;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_customerhome, null);
+        View v = inflater.inflate(R.layout.fragment_customerhome, container, false);
         getActivity().setTitle("Home");
+        setHasOptionsMenu(true);
         recyclerView = v.findViewById(R.id.recycle_menu);
         recyclerView.setHasFixedSize(true);
+        Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.move);
+        recyclerView.startAnimation(animation);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         updateDishModelList = new ArrayList<>();
-        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipelayout);
+        swipeRefreshLayout = v.findViewById(R.id.swipelayout);
         swipeRefreshLayout.setOnRefreshListener(this);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark, R.color.Orange);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimaryDark, R.color.green);
 
         swipeRefreshLayout.post(new Runnable() {
             @Override
             public void run() {
                 swipeRefreshLayout.setRefreshing(true);
                 String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                dataa = FirebaseDatabase.getInstance().getReference("Customer").child(userid);
-                dataa.addListenerForSingleValueEvent(new ValueEventListener() {
+                dataaa = FirebaseDatabase.getInstance().getReference("Customer").child(userid);
+                dataaa.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        Customer custo = snapshot.getValue(Customer.class);
-                        State = custo.getState();
-                        City = custo.getCity();
-                        Area = custo.getArea();
-                        customermenu();
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Customer cust = dataSnapshot.getValue(Customer.class);
+                        if (cust != null) {
+                            State = cust.getState();
+                            City = cust.getCity();
+                            LocalArea = cust.getLocalAddress();
+                            customermenu();
+                        }
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
             }
         });
-
 
         return v;
     }
@@ -91,56 +92,69 @@ public class CustomerHomeFragment extends Fragment implements SwipeRefreshLayout
     }
 
     private void customermenu() {
-
-        if (State != null && City != null && Area != null) {
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("FoodDetails").child(State).child(City).child(Area);
-            databaseReference.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    updateDishModelList.clear();
-                    for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                        for (DataSnapshot snapshot2 : snapshot1.getChildren()) {
-                            UpdateDishModel updateDishModel = snapshot2.getValue(UpdateDishModel.class);
-                            updateDishModelList.add(updateDishModel);
+        swipeRefreshLayout.setRefreshing(true);
+        databaseReference = FirebaseDatabase.getInstance().getReference("FoodDetails");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                updateDishModelList.clear();
+                for (DataSnapshot stateSnapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot citySnapshot : stateSnapshot.getChildren()) {
+                        for (DataSnapshot areaSnapshot : citySnapshot.getChildren()) {
+                            for (DataSnapshot chefSnapshot : areaSnapshot.getChildren()) {
+                                for (DataSnapshot dishSnapshot : chefSnapshot.getChildren()) {
+                                    UpdateDishModel dish = dishSnapshot.getValue(UpdateDishModel.class);
+                                    if (dish != null) {
+                                        updateDishModelList.add(dish);
+                                    }
+                                }
+                            }
                         }
                     }
-                    adapter = new CustomerHomeAdapter(getContext(), updateDishModelList);
-                    recyclerView.setAdapter(adapter);
-                    swipeRefreshLayout.setRefreshing(false);
+                }
+                adapter = new CustomerHomeAdapter(getContext(), updateDishModelList);
+                recyclerView.setAdapter(adapter);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        if (searchView != null) {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    swipeRefreshLayout.setRefreshing(false);
-                    Log.e("DatabaseError", "Error fetching data: " + error.getMessage());
+                public boolean onQueryTextChange(String newText) {
+                    search(newText);
+                    return true;
                 }
             });
-        } else {
-            Log.e("Error", "State, City, or Area is null");
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.logout,menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        int idd = item.getItemId();
-        if(idd == R.id.LOGOUT){
-            Logout();
-            return true;
+    private void search(final String searchText) {
+        ArrayList<UpdateDishModel> mylist = new ArrayList<>();
+        for (UpdateDishModel object : updateDishModelList) {
+            if (object.getDishes().toLowerCase().contains(searchText.toLowerCase())) {
+                mylist.add(object);
+            }
         }
-        return super.onOptionsItemSelected(item);
+        adapter = new CustomerHomeAdapter(getContext(), mylist);
+        recyclerView.setAdapter(adapter);
     }
 
-    private void Logout() {
-
-        FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(getActivity(), MainMenu.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.search, menu);
+        MenuItem menuItem = menu.findItem(R.id.Searchdish);
+        searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search Dish");
     }
 }

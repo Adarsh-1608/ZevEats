@@ -1,32 +1,19 @@
-package com.example.zeveats.customerFoodPanel;
+package com.example.zeveats;
 
 public class Customer {
-    private String city,FirstName,LastName,Password,ConfirmPassword,EmailId,MobileNo,State,Area,LocalAddress;
+    private String City, FirstName, LastName, Password, ConfirmPassword, EmailId, MobileNo, State, Area, LocalAddress, Pincode;
 
-    public Customer(){
+    public Customer() {
     }
-    // Press Alt+insert
 
-
-    public Customer(String city, String firstName, String lastName, String password, String confirmPassword, String emailId, String mobileNo, String state, String area, String localAddress) {
-        this.city = city;
-        FirstName = firstName;
-        LastName = lastName;
-        Password = password;
-        ConfirmPassword = confirmPassword;
-        EmailId = emailId;
-        MobileNo = mobileNo;
-        State = state;
-        Area = area;
-        LocalAddress = localAddress;
-    }
+    // Getters and setters for all properties
 
     public String getCity() {
-        return city;
+        return City;
     }
 
     public void setCity(String city) {
-        this.city = city;
+        City = city;
     }
 
     public String getFirstName() {
@@ -69,12 +56,12 @@ public class Customer {
         EmailId = emailId;
     }
 
-    public String getMobileNo() {
+    public String getMobileno() {
         return MobileNo;
     }
 
-    public void setMobileNo(String mobileNo) {
-        MobileNo = mobileNo;
+    public void setMobileno(String mobileno) {
+        MobileNo = mobileno;
     }
 
     public String getState() {
@@ -99,5 +86,13 @@ public class Customer {
 
     public void setLocalAddress(String localAddress) {
         LocalAddress = localAddress;
+    }
+
+    public String getPincode() {
+        return Pincode;
+    }
+
+    public void setPincode(String pincode) {
+        Pincode = pincode;
     }
 }

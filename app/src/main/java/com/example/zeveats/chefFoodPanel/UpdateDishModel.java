@@ -1,13 +1,25 @@
-package com.example.zeveats;
+package com.example.zeveats.chefFoodPanel;
 
 public class UpdateDishModel {
+    private String Chefid;
+    private String Dishes;
+    private String RandomUID;
+    private String Description;
+    private String Quantity;
+    private String Price;
+    private String ImageURL;
 
-    String Dishes,RandomUID,Description,Quantity,Price,ImageURL,ChefId;
+    // Default constructor required for calls to DataSnapshot.getValue(UpdateDishModel.class)
+    public UpdateDishModel() {
+    }
 
-    // Press Alt+insert
+    // Getters and setters
+    public String getChefid() {
+        return Chefid;
+    }
 
-    public UpdateDishModel(){
-
+    public void setChefid(String chefid) {
+        Chefid = chefid;
     }
 
     public String getDishes() {
@@ -56,13 +68,5 @@ public class UpdateDishModel {
 
     public void setImageURL(String imageURL) {
         ImageURL = imageURL;
-    }
-
-    public String getChefId() {
-        return ChefId;
-    }
-
-    public void setChefId(String chefId) {
-        ChefId = chefId;
     }
 }
