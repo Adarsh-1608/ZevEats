@@ -1,0 +1,93 @@
+<resources>
+    <string name="action_settings">Settings</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="app_name">ZevEats</string>
+    <string name="title_home">Home</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="title_dashboard">Dashboards</string>
+    <string name="title_notifications">Notifications</string>
+    <string-array name="State">
+        <item> Maharashtra</item>
+        <item>Gujarat</item>
+        <item>West Bengal</item>
+        <item>Punjab</item>
+        <item>Rajasthan</item>
+        <item>Kashmir</item>
+    </string-array>
+
+    <string-array name="shipper">
+        <item> Shipper 1</item>
+        <item>Shipper 2</item>
+        <item>Shipper 3</item>
+        <item>Shipper 4</item>
+        <item>Shipper 5</item>
+        <item>Shipper 6</item>
+    </string-array>
+
+    <string-array name="Dishname">
+        <item>Dough-Nut</item>
+        <item>Kulfi Falooda</item>
+        <item>Dosa</item>
+        <item>Veg Thali</item>
+        <item>Chole Bhature</item>
+        <item>Veg Arrabiata Pasta</item>
+        <item>Veg Steak with Rice</item>
+        <item>Veg Pizza</item>
+        <item>Non Veg Pizza </item>
+        <item>Cake</item>
+        <item>Thepla</item>
+        <item>Dal Rice</item>
+        <item>Dhokla</item>
+        <item>Paneer Tikka Roll</item>
+        <item>Chicken Tikka Roll</item>
+        <item>Sabji Roti</item>
+        <item>Kadhi Chawal</item>
+        <item>Puri bhaji</item>
+        <item>Aloo Paratha</item>
+        <item>Patra</item>
+        <item>Khandvi</item>
+        <item>Gulab Jamun</item>
+        <item>Veg Burger</item>
+        <item>Chicken Burger</item>
+        <item>Lamb Burger</item>
+        <item>Gulab Jamun</item>
+        <item>French Fries</item>
+        <item>Shrikhand</item>
+        <item>Veg Momos</item>
+        <item>Chicken Momos</item>
+        <item>Brownie</item>
+        <item>Palak Paneer</item>
+        <item>Khulcha</item>
+        <item>Makki di roti</item>
+        <item>Gobi Paratha</item>
+        <item>Rajma Chawal</item>
+        <item>Bhindi Fry</item>
+        <item>Veg Dum Biryani</item>
+        <item>Chicken Dum Biryani</item>
+        <item>Mutton Dum Biryani</item>
+        <item>Rumali roti</item>
+        <item>Dal Makhani</item>
+        <item>Samosa</item>
+        <item>Kachori</item>
+        <item>Mendu Vada</item>
+        <item>Pulav</item>
+        <item>Pav Bhaji</item>
+        <item>Tandoori Chicken</item>
+        <item>Misal Pav</item>
+        <item>Mix Vegetable</item>
+        <item>Rasmalai</item>
+        <item>JeeraRice</item>
+        <item>Kalakand</item>
+        <item>Puranpoli</item>
+        <item>Egg Curry</item>
+        <item>Pomfret Fish</item>
+        <item>Egg Bhurji</item>
+        <item>Dahi Puri</item>
+        <item>Aloo Tikki</item>
+        <item>Rajkachori</item>
+        <item>Papdi Chaat</item>
+    </string-array>
+
+
+</resources>

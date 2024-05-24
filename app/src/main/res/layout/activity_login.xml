@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img6"
+    tools:context=".Login">
+
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="280dp"
+        android:layout_height="446dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="210dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginBottom="210dp"
+        android:background="@drawable/background_shape1"
+        android:orientation="vertical"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/Demail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:height="49dp"
+                android:drawableLeft="@drawable/ic_baseline_email_24"
+                android:drawablePadding="5dp"
+                android:gravity="center_vertical"
+                android:hint="Email id"
+                android:includeFontPadding="false"
+                android:inputType="textEmailAddress"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/Dpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:paddingBottom="5dp"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:height="49dp"
+                android:drawablePadding="10dp"
+                android:hint="Password"
+                android:inputType="text|textVisiblePassword"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/Dforgotpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Forgot Password?"
+            android:textColor="#090909"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/Loginbtn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btnblueish"
+            android:paddingTop="7dp"
+            android:text="Login"
+            android:textAlignment="center"
+            android:textColor="#FFFF"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/donot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Don't Have An Account? Create Now"
+            android:textColor="#090909"
+            android:textSize="13sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TableRow
+                android:id="@+id/hr"
+                android:layout_width="103dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="#090909" />
+
+            <TextView
+                android:id="@+id/OR"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="OR"
+                android:textAlignment="center"
+                android:textColor="#090909"
+                android:textSize="12sp" />
+
+            <TableRow
+                android:id="@+id/dr"
+                android:layout_width="103dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="#090909" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/signphone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="11dp"
+            android:text="Sign-In With"
+            android:textAlignment="center"
+            android:textColor="#090909"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/Dbtnphone"
+            android:layout_width="105dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="13dp"
+            android:background="@drawable/btnblueish"
+            android:drawableLeft="@drawable/phonewhite"
+            android:includeFontPadding="true"
+            android:padding="10dp"
+            android:text="Phone"
+            android:textAlignment="center"
+            android:textColor="#FFFF"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
