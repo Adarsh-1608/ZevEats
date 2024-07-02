@@ -1,5 +1,7 @@
 package com.example.zeveats.SendNotification;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,29 +17,32 @@ public class MyFirebaseIdService extends FirebaseMessagingService {
     @Override
     public void onNewToken(@NonNull String s) {
         super.onNewToken(s);
-        FirebaseUser firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-//        String refreshToken= FirebaseInstanceId.getInstance().getToken();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
             @Override
             public void onComplete(@NonNull Task<String> task) {
-                if(task.isComplete()){
+                if (task.isSuccessful()) {
                     String token = task.getResult();
-                    if (firebaseUser !=null)
-                    {
+                    Log.d("FCMToken", "Token: " + token);
+                    if (firebaseUser != null) {
                         updateToken(token);
                     }
-
+                } else {
+                    Log.w("FCMToken", "Fetching FCM registration token failed", task.getException());
                 }
             }
         });
-
-
     }
 
-    private void updateToken(String refreshToken)
-    {
-        FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
-        Token token1=new Token(refreshToken);
-        FirebaseDatabase.getInstance().getReference("Tokens").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(token1);
+    private void updateToken(String refreshToken) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser != null) {
+            Token token1 = new Token(refreshToken);
+            FirebaseDatabase.getInstance().getReference("Tokens")
+                    .child(firebaseUser.getUid()).setValue(token1)
+                    .addOnSuccessListener(aVoid -> Log.d("FCMToken", "Token saved successfully"))
+                    .addOnFailureListener(e -> Log.w("FCMToken", "Error saving token", e));
+        }
     }
+
 }

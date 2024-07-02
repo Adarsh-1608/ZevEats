@@ -115,8 +115,8 @@
 
         <Button
             android:id="@+id/btnEmail"
-            android:layout_width="105dp"
-            android:layout_height="40dp"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/btnred"
@@ -124,7 +124,7 @@
             android:drawablePadding="5dp"
             android:includeFontPadding="false"
             android:padding="10dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="15dp"
             android:text="Email"
             android:textColor="@color/white"
             android:textSize="16sp" />

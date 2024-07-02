@@ -30,7 +30,7 @@
                 android:textColor="@color/Blacklogo"
                 android:maxWidth="300dp"
                 android:text="Pizza "
-                android:textSize="25dp" />
+                android:textSize="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

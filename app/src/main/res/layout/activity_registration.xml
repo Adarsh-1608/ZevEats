@@ -281,33 +281,33 @@
 
                 <Button
                     android:id="@+id/email"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_width="126dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="13dp"
                     android:layout_weight="1"
                     android:height="49dp"
+                    android:layout_gravity="left"
                     android:background="@drawable/btnred"
                     android:drawableLeft="@drawable/whitemail"
                     android:padding="10dp"
                     android:text="Email"
                     android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"  />
 
                 <Button
                     android:id="@+id/phone"
-                    android:layout_width="110dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:height="49dp"
+                    android:layout_width="126dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="13dp"
                     android:background="@drawable/btnblueish"
                     android:drawableLeft="@drawable/phonewhite"
-                    android:drawablePadding="5dp"
-                    android:padding="8dp"
+                    android:includeFontPadding="true"
+                    android:padding="10dp"
                     android:text="Phone"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp" />
+                    android:textAlignment="center"
+                    android:textColor="#FFFF"
+                    android:textSize="14sp"  />
 
             </LinearLayout>
 
